@@ -20,7 +20,7 @@ func main() {
 		log.Fatal(err)
 	}
 	// Start listening on a TCP Port
-	lis, err := net.Listen("tcp", "127.0.0.1:9990")
+	lis, err := net.Listen("tcp", "127.0.0.1:9999")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -33,6 +33,7 @@ func main() {
 	// The register function is a generated piece by protoc.
 	pingpong.RegisterPingPongServer(apiserver, s)
 	// Start serving in a goroutine to not block
+
 	go func() {
 		log.Fatal(apiserver.Serve(lis))
 	}()
@@ -43,7 +44,6 @@ func main() {
 	multiplex := grpcMultiplexer{
 		grpcWebServer,
 	}
-
 	// We need a http router
 	r := http.NewServeMux()
 	// Load the static webpage with a http fileserver
@@ -55,7 +55,7 @@ func main() {
 	// Create a HTTP server and bind the router to it, and set wanted address
 	srv := &http.Server{
 		Handler:      r,
-		Addr:         "localhost:8080",
+		Addr:         "localhost:8000",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}

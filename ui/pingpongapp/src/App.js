@@ -5,7 +5,7 @@ import { PingPongClient } from './proto/service_grpc_web_pb';
 import { PingRequest } from './proto/service_pb';
 
   // We create a client that connects to the api
-var client = new PingPongClient("https://localhost:8080");
+var client = new PingPongClient("https://localhost:8000");
 
 function App() {
   // Create a const named status and a function called setStatus
@@ -17,6 +17,7 @@ function App() {
     // as the third param is a callback. 
     client.ping(pingRequest, null, function(err, response) {
       // serialize the response to an object 
+      console.log(response)
       var pong = response.toObject();
       // call setStatus to change the value of status
        setStatus(pong.ok);

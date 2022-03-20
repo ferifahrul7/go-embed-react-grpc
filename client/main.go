@@ -17,7 +17,7 @@ func main() {
 	// Load our TLS certificate and use grpc/credentials to create new transport credentials
 	creds := credentials.NewTLS(loadTLSCfg())
 	// Create a new connection using the transport credentials
-	conn, err := grpc.DialContext(ctx, "localhost:9990", grpc.WithTransportCredentials(creds))
+	conn, err := grpc.DialContext(ctx, "localhost:9999", grpc.WithTransportCredentials(creds))
 
 	if err != nil {
 		log.Fatal(err)
